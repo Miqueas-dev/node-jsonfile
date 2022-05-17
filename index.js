@@ -4,6 +4,7 @@ try {
 } catch (_) {
   _fs = require('fs')
 }
+const { write } = require('fs')
 const universalify = require('universalify')
 const { stringify, stripBom } = require('./utils')
 
@@ -77,12 +78,13 @@ function writeFileSync (file, obj, options = {}) {
   // not sure if fs.writeFileSync returns anything, but just in case
   return fs.writeFileSync(file, str, options)
 }
-
+const escribir = writeFileSync
 const jsonfile = {
   readFile,
   readFileSync,
   writeFile,
-  writeFileSync
+  writeFileSync,
+  escribir: writeFileSync
 }
 
 module.exports = jsonfile
